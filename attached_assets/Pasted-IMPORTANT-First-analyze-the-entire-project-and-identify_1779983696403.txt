@@ -1,0 +1,121 @@
+IMPORTANT:
+
+First analyze the entire project and identify all Replit-specific dependencies, deployment risks, broken imports, unstable packages, and missing production requirements.
+
+Then convert this entire project into a FULLY INDEPENDENT production-ready AI SaaS platform.
+
+The project must be COMPLETELY FREE from all Replit dependencies and configurations.
+
+REMOVE ALL:
+
+* Replit packages
+* Replit plugins
+* vite-plugin-replit
+* @replit packages
+* .replit files
+* replit.nix
+* hidden Replit configs
+* workspace references
+* monorepo structure
+* unstable dependencies
+
+REQUIREMENTS:
+
+* Must work independently outside Replit
+* Must run perfectly in VS Code locally
+* Must deploy successfully on Vercel
+* Must deploy successfully on Netlify
+* Use only stable npm packages
+* Ensure clean package.json
+* Ensure clean vite.config.ts
+* Ensure clean tsconfig.json
+* Ensure clean tailwind.config.js
+* Fix all broken imports
+* Fix all alias issues
+* Remove all fake APIs
+* Remove all hidden unsupported dependencies
+* Ensure npm install works correctly
+* Ensure npm run dev works correctly
+* Ensure npm run build completes successfully without errors
+
+IMPORTANT:
+
+Do NOT use:
+
+* Tailwind v4
+* workspace:*
+* experimental CSS
+* unsupported plugins
+* unstable libraries
+
+Generate a clean scalable independent project structure suitable for international SaaS production deployment.
+
+Also generate:
+
+* proper .gitignore
+* clean environment variable example
+* deployment instructions
+* production-safe folder structure
+
+========================================
+HOMEPAGE REQUIREMENTS
+=====================
+
+The homepage must be PREMIUM, MODERN, FUTURISTIC and INTERNATIONAL SaaS quality.
+
+The current homepage is weak and incomplete.
+
+Completely redesign and improve the homepage professionally.
+
+The homepage must look similar in quality to:
+
+* OpenAI
+* Intercom
+* Zendesk
+* Notion AI
+* HubSpot
+* Crisp
+
+Use:
+
+* Royal Blue + White premium color theme
+* Soft gradients
+* Glassmorphism
+* Smooth animations
+* Professional spacing
+* Modern typography
+* Elegant cards
+* Framer Motion animations
+* Mobile responsiveness
+
+The homepage must include:
+
+* Premium sticky navbar
+* Hero section with advanced AI assistant UI
+* AI chatbot visual section
+* Trusted companies section
+* Feature showcase
+* AI automation showcase
+* Smart analytics showcase
+* Testimonials
+* Pricing preview
+* FAQ section
+* Multiple CTA sections
+* Beautiful SaaS footer
+* Smooth scrolling
+* Hover animations
+* Loading effects
+* Professional responsive layout
+
+Buttons:
+
+* Get Started
+* Book Demo
+* Try Free
+* Contact Sales
+
+IMPORTANT:
+
+The homepage must feel like a REAL million-dollar international AI SaaS startup website.
+
+Do NOT generate placeholder sections or fake broken UI.

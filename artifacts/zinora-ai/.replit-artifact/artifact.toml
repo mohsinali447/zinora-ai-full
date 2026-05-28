@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Zinora AI"
+version = "1.0.0"
+id = "artifacts/zinora-ai"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25668
+
+[services.development]
+run = "pnpm --filter @workspace/zinora-ai run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/zinora-ai", "run", "build" ]
+publicDir = "artifacts/zinora-ai/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25668"
+BASE_PATH = "/"

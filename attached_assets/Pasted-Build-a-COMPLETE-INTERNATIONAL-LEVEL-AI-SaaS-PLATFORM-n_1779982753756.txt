@@ -1,0 +1,346 @@
+Build a COMPLETE INTERNATIONAL-LEVEL AI SaaS PLATFORM named “Zinora AI”.
+
+IMPORTANT:
+This is NOT a simple demo website.
+This must be a PROFESSIONAL, scalable, production-ready AI customer support platform for international businesses.
+
+The platform must be built with:
+
+* React + Vite
+* Tailwind CSS v3 ONLY (NOT Tailwind v4)
+* TypeScript
+* React Router
+* ShadCN UI
+* Framer Motion
+* Clean scalable folder structure
+* No Replit dependencies
+* No monorepo
+* No workspace packages
+* No experimental CSS syntax
+* No unsupported Tailwind features
+* No external hidden dependencies
+* Must be fully independent
+* Must deploy perfectly on Vercel and Netlify without build errors
+
+VERY IMPORTANT:
+The project MUST NOT use:
+
+* workspace:*
+* monorepo structure
+* Tailwind CSS v4 syntax
+* @theme
+* @plugin
+* @custom-variant
+* Replit packages
+* unstable CSS configurations
+
+Use ONLY stable production-ready packages.
+
+========================================
+DESIGN STYLE
+============
+
+Theme must be PREMIUM, MODERN, CLEAN, INTERNATIONAL and VIP quality.
+
+Primary colors:
+
+* Royal Blue
+* White
+* Soft gradients
+* Glassmorphism effects
+* Clean modern shadows
+* Elegant cards
+* Smooth hover animations
+
+The UI should look similar to:
+
+* Intercom
+* Zendesk
+* Crisp
+* HubSpot
+* Notion AI
+* OpenAI SaaS products
+
+Use the attached screenshot as visual inspiration for:
+
+* homepage layout
+* AI assistant visuals
+* dashboard style
+* blue/white theme
+* cards and sections
+* hero layout
+
+The design MUST feel:
+
+* futuristic
+* trustworthy
+* premium
+* SaaS enterprise quality
+
+========================================
+FULL WEBSITE PAGES
+==================
+
+Create ALL pages fully functional and professionally designed:
+
+1. Home Page
+2. Features Page
+3. Pricing Page
+4. About Page
+5. Contact Page
+6. FAQ Page
+7. Blog Page
+8. Login Page
+9. Signup Page
+10. Forgot Password Page
+11. Dashboard
+12. Conversations
+13. AI Settings
+14. Billing Page
+15. Knowledge Base
+16. Analytics Page
+17. Team Management
+18. Integrations Page
+19. Profile Settings
+20. Notifications Page
+21. Support Center
+
+========================================
+HOME PAGE REQUIREMENTS
+======================
+
+The homepage must be WORLD-CLASS.
+
+Include:
+
+* Hero section with premium AI chatbot UI
+* Animated AI assistant visuals
+* Statistics cards
+* Trusted by companies section
+* AI automation showcase
+* Smart analytics showcase
+* Testimonials
+* FAQ section
+* CTA sections
+* Pricing preview
+* Beautiful footer
+* Responsive navbar
+* Sticky header
+* Smooth scrolling
+* Mobile responsive design
+
+Buttons:
+
+* Get Started
+* Book Demo
+* Try Free
+* Contact Sales
+
+========================================
+AUTHENTICATION
+==============
+
+Build a complete authentication system:
+
+* Login
+* Signup
+* Forgot Password
+* Protected routes
+* Session management
+* User profile
+
+Use Supabase or Firebase.
+
+========================================
+DASHBOARD
+=========
+
+The dashboard must look like a REAL SaaS product.
+
+Include:
+
+* Sidebar navigation
+* Top navbar
+* Usage statistics
+* AI activity charts
+* Recent conversations
+* Notification center
+* Team collaboration
+* Live AI metrics
+* Mobile responsive dashboard
+
+========================================
+CONVERSATIONS PAGE
+==================
+
+Build a modern AI inbox system.
+
+Features:
+
+* Chat threads
+* Real-time messages
+* AI replies
+* Filters
+* Search
+* Chat status
+* Tags
+* Customer details panel
+* Emoji support
+* Attachments
+* Smooth scrolling
+
+========================================
+KNOWLEDGE BASE
+==============
+
+Build a professional knowledge management system.
+
+Include:
+
+* Categories
+* Search
+* AI training articles
+* File upload
+* Rich text editor
+* Tags
+* AI data sources
+
+========================================
+BILLING PAGE
+============
+
+The billing page MUST work properly and professionally.
+
+Include:
+
+* Subscription plans
+* Monthly/yearly toggle
+* Current plan
+* Upgrade/downgrade
+* Usage limits
+* AI credits
+* Payment history
+* Invoice cards
+* Stripe-ready UI
+* Beautiful pricing cards
+
+NO fake broken UI.
+
+========================================
+AI SETTINGS PAGE
+================
+
+Include:
+
+* AI personality settings
+* Response tone
+* Automation settings
+* Escalation rules
+* AI model selection
+* Language settings
+* Confidence threshold
+* Smart toggles
+* Save settings functionality
+
+========================================
+ANALYTICS PAGE
+==============
+
+Build a modern analytics dashboard.
+
+Include:
+
+* Charts
+* AI performance
+* Ticket resolution
+* Customer satisfaction
+* Response speed
+* Usage statistics
+* Team performance
+* Export reports
+
+========================================
+HEADER & FOOTER
+===============
+
+Header:
+
+* sticky
+* premium
+* animated
+* responsive
+
+Footer:
+
+* multi-column
+* company links
+* social links
+* legal pages
+* modern SaaS style
+
+========================================
+ANIMATIONS
+==========
+
+Use smooth modern animations:
+
+* Framer Motion
+* hover effects
+* loading skeletons
+* page transitions
+* card animations
+
+========================================
+RESPONSIVENESS
+==============
+
+The ENTIRE platform must be:
+
+* fully responsive
+* mobile optimized
+* tablet optimized
+* desktop optimized
+
+========================================
+DEPLOYMENT REQUIREMENTS
+=======================
+
+CRITICAL:
+
+The project MUST:
+
+* build successfully on Vercel
+* build successfully on Netlify
+* have ZERO deployment errors
+* have ZERO missing dependencies
+* use stable packages only
+
+Provide:
+
+* clean package.json
+* clean vite.config.ts
+* clean tailwind.config.js
+* clean tsconfig.json
+
+NO broken imports.
+
+NO fake APIs.
+
+NO placeholder broken components.
+
+========================================
+FINAL OUTPUT
+============
+
+Generate:
+
+* COMPLETE production-ready source code
+* Clean architecture
+* Professional folder structure
+* Independent project
+* Easy deployment setup
+* README deployment instructions
+
+The project must feel like a REAL INTERNATIONAL AI SaaS PRODUCT worth millions of dollars.
+
+Use the attached screenshot as inspiration for the visual quality and theme style.

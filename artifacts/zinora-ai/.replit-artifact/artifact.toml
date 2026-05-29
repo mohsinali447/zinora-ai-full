@@ -15,11 +15,11 @@ paths = [ "/" ]
 localPort = 25668
 
 [services.development]
-run = "pnpm --filter @workspace/zinora-ai run dev"
+run = "pnpm --filter zinora-ai run dev"
 
 [services.production]
-build = [ "pnpm", "--filter", "@workspace/zinora-ai", "run", "build" ]
-publicDir = "artifacts/zinora-ai/dist/public"
+build = [ "pnpm", "--filter", "zinora-ai", "run", "build" ]
+publicDir = "artifacts/zinora-ai/dist"
 serve = "static"
 
 [[services.production.rewrites]]

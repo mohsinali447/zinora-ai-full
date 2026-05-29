@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { PublicLayout } from "@/components/layouts/public-layout";
 import { ArrowRight, Bot, Zap, Globe, Shield, BarChart, MessageSquare, Clock, Check, TrendingUp, ArrowUpRight, Cpu } from "lucide-react";
 import heroImagePath from "@assets/image_1779982769367.png";
-import { useListPlans } from "@workspace/api-client-react";
+import { useListPlans } from "@/lib/hooks";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";

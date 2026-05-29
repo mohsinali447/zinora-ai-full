@@ -1,5 +1,5 @@
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
-import { useGetAnalyticsOverview, useGetAnalyticsCharts } from "@workspace/api-client-react";
+import { useGetAnalyticsOverview, useGetAnalyticsCharts } from "@/lib/hooks";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, LineChart, Line, Legend } from 'recharts';

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
-import { useListTeamMembers, useInviteTeamMember, getListTeamMembersQueryKey } from "@workspace/api-client-react";
+import { useListTeamMembers, useInviteTeamMember, getListTeamMembersQueryKey } from "@/lib/hooks";
 import { useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";

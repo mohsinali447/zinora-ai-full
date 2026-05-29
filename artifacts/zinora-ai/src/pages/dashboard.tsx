@@ -1,5 +1,5 @@
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
-import { useGetDashboardSummary, useGetDashboardActivity } from "@workspace/api-client-react";
+import { useGetDashboardSummary, useGetDashboardActivity } from "@/lib/hooks";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessageSquare, CheckCircle, Clock, Star, Bot, TrendingUp, Activity } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";

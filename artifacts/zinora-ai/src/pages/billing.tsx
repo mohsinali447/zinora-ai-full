@@ -1,5 +1,5 @@
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
-import { useGetSubscription, useListPlans, useListInvoices } from "@workspace/api-client-react";
+import { useGetSubscription, useListPlans, useListInvoices } from "@/lib/hooks";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";

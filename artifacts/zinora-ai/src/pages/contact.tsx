@@ -1,5 +1,5 @@
 import { PublicLayout } from "@/components/layouts/public-layout";
-import { useSubmitContact } from "@workspace/api-client-react";
+import { useSubmitContact } from "@/lib/hooks";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

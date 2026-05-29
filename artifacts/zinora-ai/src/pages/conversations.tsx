@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
-import { useListConversations, useGetConversation, useListMessages, useSendMessage, useUpdateConversation } from "@workspace/api-client-react";
-import { getListConversationsQueryKey, getListMessagesQueryKey } from "@workspace/api-client-react";
+import { useListConversations, useGetConversation, useListMessages, useSendMessage, useUpdateConversation } from "@/lib/hooks";
+import { getListConversationsQueryKey, getListMessagesQueryKey } from "@/lib/hooks";
 import { useQueryClient } from "@tanstack/react-query";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";

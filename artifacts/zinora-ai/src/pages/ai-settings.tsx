@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
-import { useGetAiSettings, useUpdateAiSettings, getGetAiSettingsQueryKey } from "@workspace/api-client-react";
+import { useGetAiSettings, useUpdateAiSettings, getGetAiSettingsQueryKey } from "@/lib/hooks";
 import { useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";

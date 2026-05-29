@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
-import { useListArticles, useListCategories, useCreateArticle } from "@workspace/api-client-react";
-import { getListArticlesQueryKey, getListCategoriesQueryKey } from "@workspace/api-client-react";
+import { useListArticles, useListCategories, useCreateArticle } from "@/lib/hooks";
+import { getListArticlesQueryKey, getListCategoriesQueryKey } from "@/lib/hooks";
 import { useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";

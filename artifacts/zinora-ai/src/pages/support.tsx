@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
-import { useSubmitContact } from "@workspace/api-client-react";
+import { useSubmitContact } from "@/lib/hooks";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, LifeBuoy, Mail } from "lucide-react";
-import { useGetMe } from "@workspace/api-client-react";
+import { useGetMe } from "@/lib/hooks";
 
 export default function Support() {
   const { data: user } = useGetMe();

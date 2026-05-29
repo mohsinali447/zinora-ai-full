@@ -1,0 +1,90 @@
+IMPORTANT: Perform a COMPLETE DECOUPLING AND INDEPENDENCE AUDIT of this project.
+
+This project must become a FULLY INDEPENDENT production-ready application with ZERO Replit dependencies.
+
+DO NOT manually remove functionality. Instead, intelligently replace all Replit and workspace dependencies with production-safe alternatives.
+
+REMOVE AND REPLACE ALL OF THE FOLLOWING:
+
+* @workspace/*
+* workspace:*
+* catalog:
+* @replit/*
+* replit.nix
+* .replit
+* .replit-artifact
+* Replit plugins
+* Replit runtime dependencies
+* Replit dev banner
+* Replit cartographer
+* Replit error overlay
+* Monorepo references
+* Workspace package references
+
+CRITICAL:
+
+The project currently contains many imports such as:
+
+@workspace/api-client-react
+
+Do NOT simply delete these imports.
+
+Instead:
+
+1. Find every usage of these imports.
+2. Identify what functionality they provide.
+3. Replace them with local implementations.
+4. Generate local service files, hooks, utilities, mock services, or API clients as needed.
+5. Ensure every page continues to work without code breaking.
+
+API REQUIREMENTS:
+
+* Remove all dependency on @workspace/api-client-react.
+* Create a local API layer.
+* Create local service files.
+* Use mock data where backend data is missing.
+* Make all pages render successfully.
+
+DATABASE REQUIREMENTS:
+
+* Remove all database coupling.
+* Do not require any existing Replit database.
+* Create a clean database abstraction layer.
+* Prepare the project for future Supabase integration.
+* We will connect our own database later.
+
+BUILD REQUIREMENTS:
+
+* npm install must succeed.
+* npm run dev must succeed.
+* npm run build must succeed.
+* No unresolved imports.
+* No missing packages.
+* No workspace dependencies.
+* No Replit dependencies.
+
+OUTPUT REQUIRED:
+
+Provide a report showing:
+
+1. All removed Replit dependencies.
+2. All removed workspace dependencies.
+3. All files modified.
+4. All replacement services/hooks created.
+5. Confirmation that:
+
+   * localhost works
+   * build works
+   * Vercel deployment is ready
+   * Netlify deployment is ready
+
+IMPORTANT:
+
+Do NOT leave any reference to:
+
+* @workspace/
+* workspace:*
+* catalog:
+* @replit/
+
+The final project must be a standalone React + Vite + TypeScript application that can be deployed independently outside Replit.

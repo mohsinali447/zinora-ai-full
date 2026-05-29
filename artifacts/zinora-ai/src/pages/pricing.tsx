@@ -1,5 +1,5 @@
 import { PublicLayout } from "@/components/layouts/public-layout";
-import { useListPlans } from "@workspace/api-client-react";
+import { useListPlans } from "@/lib/hooks";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 

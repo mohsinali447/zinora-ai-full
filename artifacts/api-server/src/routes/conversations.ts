@@ -132,6 +132,8 @@ await db.insert(messagesTable).values({
   attachments: [],
 });
 
+console.log("CUSTOMER MESSAGE SAVED", parsed.data.content);
+
   const completion = await openai.chat.completions.create({
   model: "gpt-4o-mini",
   messages: [

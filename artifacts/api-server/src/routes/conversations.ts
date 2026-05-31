@@ -111,6 +111,8 @@ router.get("/conversations/:id/messages", async (req, res): Promise<void> => {
   const rawId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
   const id = parseInt(rawId, 10);
   const rows = await db.select().from(messagesTable).where(eq(messagesTable.conversationId, id));
+
+  console.log("ALL MESSAGES", JSON.stringify(rows, null, 2));
   res.json(ListMessagesResponse.parse(rows.map(formatMessage)));
 });
 

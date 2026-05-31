@@ -1,4 +1,8 @@
 import { Router, type IRouter } from "express";
+import OpenAI from "openai";
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 import { db, conversationsTable, messagesTable } from "@workspace/db";
 import { eq, like, desc, sql, and } from "drizzle-orm";
 import {
@@ -118,14 +122,34 @@ router.post("/conversations/:id/messages", async (req, res): Promise<void> => {
     res.status(400).json({ error: parsed.error.message });
     return;
   }
+
+  const completion = await openai.chat.completions.create({
+  model: "gpt-4o-mini",
+  messages: [
+    {
+      role: "system",
+      content: "You are Zinora AI, a professional customer support assistant.",
+    },
+    {
+      role: "user",
+      content: parsed.data.content,
+    },
+  ],
+});
+
+const aiResponse =
+  completion.choices[0]?.message?.content ??
+  "Sorry, I could not generate a response.";
+
   const [msg] = await db.insert(messagesTable).values({
-    conversationId: id,
-    content: parsed.data.content,
-    sender: "Agent",
-    senderType: "agent",
-    isAi: false,
-    attachments: parsed.data.attachments ?? [],
-  }).returning();
+  conversationId: id,
+  content: aiResponse,
+  sender: "Zinora AI",
+  senderType: "agent",
+  isAi: true,
+  attachments: [],
+}).returning();
+
   await db.update(conversationsTable).set({
     lastMessage: parsed.data.content,
     lastMessageAt: new Date(),

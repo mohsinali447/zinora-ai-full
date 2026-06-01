@@ -125,16 +125,16 @@ router.post("/conversations/:id/messages", async (req, res): Promise<void> => {
     return;
   }
 
-await db.insert(messagesTable).values({
+const customerMsg = await db.insert(messagesTable).values({
   conversationId: id,
   content: parsed.data.content,
   sender: "Customer",
   senderType: "customer",
   isAi: false,
   attachments: [],
-});
+}).returning();
 
-console.log("CUSTOMER MESSAGE SAVED", parsed.data.content);
+console.log("CUSTOMER INSERT RESULT", customerMsg);
 
   const completion = await openai.chat.completions.create({
   model: "gpt-4o-mini",

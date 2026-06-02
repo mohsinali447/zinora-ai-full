@@ -65,6 +65,16 @@ export const api = {
       return apiFetch<Conversation[]>(`/conversations${q.toString() ? `?${q}` : ""}`);
     },
     get: (id: number) => apiFetch<Conversation>(`/conversations/${id}`),
+    create: (data: {
+  customerName: string;
+  customerEmail: string;
+  subject: string;
+  channel: string;
+}) =>
+  apiFetch<Conversation>("/conversations", {
+    method: "POST",
+    body: JSON.stringify(data),
+  }),
     update: (id: number, data: Partial<Conversation>) =>
       apiFetch<Conversation>(`/conversations/${id}`, { method: "PATCH", body: JSON.stringify(data) }),
     listMessages: (id: number) => apiFetch<Message[]>(`/conversations/${id}/messages`),

@@ -135,6 +135,8 @@ const customerMsg = await db.insert(messagesTable).values({
 }).returning();
 
 console.log("CUSTOMER INSERT RESULT", customerMsg);
+res.status(201).json(formatMessage(customerMsg[0]));
+return;
 
   const completion = await openai.chat.completions.create({
   model: "gpt-4o-mini",

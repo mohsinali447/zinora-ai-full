@@ -1,6 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
-import { useListConversations, useGetConversation, useListMessages, useSendMessage, useUpdateConversation } from "@/lib/hooks";
+import {
+  useListConversations,
+  useGetConversation,
+  useListMessages,
+  useSendMessage,
+  useUpdateConversation,
+  useCreateConversation
+} from "@/lib/hooks";
 import { getListConversationsQueryKey, getListMessagesQueryKey } from "@/lib/hooks";
 import { useQueryClient } from "@tanstack/react-query";
 import { Input } from "@/components/ui/input";
@@ -8,15 +15,34 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Search, Send, Loader2, Bot, User, CheckCircle2, MessageSquare } from "lucide-react";
+import { Search, Send, Loader2, Bot, User, CheckCircle2, MessageSquare, Plus } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
+
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+
+import { Label } from "@/components/ui/label";
 
 export default function Conversations() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [statusFilter, setStatusFilter] = useState("all");
   const [search, setSearch] = useState("");
   const [newMessage, setNewMessage] = useState("");
+const [localMessages, setLocalMessages] = useState<any[]>([]);
+const [isCreateOpen, setIsCreateOpen] = useState(false);
+
+const [customerName, setCustomerName] = useState("");
+const [customerEmail, setCustomerEmail] = useState("");
+const [subject, setSubject] = useState("");
+const [channel, setChannel] = useState("chat");
+const messagesEndRef = useRef<HTMLDivElement>(null);
+
   const queryClient = useQueryClient();
 
   const { data: conversations, isLoading: isListLoading } = useListConversations({
@@ -32,17 +58,53 @@ export default function Conversations() {
     query: { enabled: !!selectedId }
   });
 
-  const sendMessageMutation = useSendMessage();
+  console.log("MESSAGES DATA", JSON.stringify(messages, null, 2));
+
+const [isTyping, setIsTyping] = useState(false);
+useEffect(() => {
+  messagesEndRef.current?.scrollIntoView({
+    behavior: "smooth",
+  });
+}, [messages]);
+
+ 
   const updateMutation = useUpdateConversation();
+  const createConversationMutation = useCreateConversation();
+  const sendMessageMutation = useSendMessage();
+
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newMessage.trim() || !selectedId) return;
 
+const tempMessage = {
+  id: Date.now(),
+  conversationId: selectedId,
+  content: newMessage,
+  sender: "Customer",
+  senderType: "customer",
+  isAi: false,
+  timestamp: new Date().toISOString(),
+};
+
+setLocalMessages((prev) => [...prev, tempMessage]);
+
+    setIsTyping(true);
+
     sendMessageMutation.mutate({ id: selectedId, data: { content: newMessage } }, {
       onSuccess: () => {
+       
         setNewMessage("");
+        setLocalMessages([]);
+        setIsTyping(false);
+
+        
+        queryClient.refetchQueries({
+  queryKey: getListMessagesQueryKey(selectedId)
+});
         queryClient.invalidateQueries({ queryKey: getListMessagesQueryKey(selectedId) });
+
+    
         queryClient.invalidateQueries({ queryKey: getListConversationsQueryKey() });
       }
     });
@@ -57,13 +119,117 @@ export default function Conversations() {
     });
   };
 
+const handleCreateConversation = () => {
+  if (!customerName || !customerEmail || !subject) return;
+
+  createConversationMutation.mutate(
+    {
+      data: {
+        customerName,
+        customerEmail,
+        subject,
+        channel,
+      },
+    },
+
+    {
+      onSuccess: (conversation) => {
+        
+        queryClient.invalidateQueries({
+          queryKey: getListConversationsQueryKey(),
+        });
+
+        setSelectedId(conversation.id);
+        setIsCreateOpen(false);
+
+        setCustomerName("");
+        setCustomerEmail("");
+        setSubject("");
+        setChannel("chat");
+      },
+   onError: (error) => {
+      console.error("CREATE ERROR", error);
+      alert(`CREATE ERROR: ${error}`);
+    },
+  }
+);
+};
+const allMessages = [...(messages || []), ...localMessages];
   return (
     <DashboardLayout>
+
+<Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>New Conversation</DialogTitle>
+    </DialogHeader>
+
+    <div className="space-y-4">
+      <div>
+        <Label>Customer Name</Label>
+        <Input
+          value={customerName}
+          onChange={(e) => setCustomerName(e.target.value)}
+          placeholder="John Smith"
+        />
+      </div>
+
+      <div>
+        <Label>Email</Label>
+        <Input
+          value={customerEmail}
+          onChange={(e) => setCustomerEmail(e.target.value)}
+          placeholder="john@example.com"
+        />
+      </div>
+
+      <div>
+        <Label>Subject</Label>
+        <Input
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+          placeholder="Support Request"
+        />
+      </div>
+    </div>
+
+    <DialogFooter>
+      <Button
+        variant="outline"
+        onClick={() => setIsCreateOpen(false)}
+      >
+        Cancel
+      </Button>
+
+      <Button
+        onClick={handleCreateConversation}
+        disabled={createConversationMutation.isPending}
+      >
+        {createConversationMutation.isPending ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          "Create"
+        )}
+      </Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+
       <div className="flex h-[calc(100vh-8rem)] rounded-xl border bg-background overflow-hidden shadow-sm">
         {/* Left Pane - List */}
         <div className="w-1/3 flex flex-col border-r min-w-[300px]">
           <div className="p-4 border-b space-y-4">
-            <h2 className="font-semibold text-lg">Inbox</h2>
+            <div className="flex items-center justify-between">
+  <h2 className="font-semibold text-lg">Inbox</h2>
+
+  <Button
+    size="sm"
+    onClick={() => setIsCreateOpen(true)}
+  >
+    <Plus className="h-4 w-4 mr-2" />
+    New
+  </Button>
+</div>
             <div className="relative">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
@@ -152,24 +318,41 @@ export default function Conversations() {
               </div>
 
               {/* Messages */}
+              
               <ScrollArea className="flex-1 p-6">
                 <div className="space-y-6 flex flex-col">
                   {isMsgsLoading ? (
                      <div className="flex justify-center p-4">
                        <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
                      </div>
-                  ) : messages?.map((msg) => (
+                  ) : allMessages.map((msg) => (
                     <div
-                      key={msg.id}
-                      className={`flex gap-3 max-w-[80%] ${msg.isAi || msg.senderType === 'agent' ? 'self-end flex-row-reverse' : 'self-start'}`}
-                    >
-                      <Avatar className="h-8 w-8 mt-auto">
-                        <AvatarFallback className={msg.isAi ? 'bg-primary text-primary-foreground' : ''}>
-                          {msg.isAi ? <Bot className="h-4 w-4" /> : msg.senderType === 'agent' ? <User className="h-4 w-4" /> : msg.sender.charAt(0)}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className={`flex flex-col gap-1 ${msg.isAi || msg.senderType === 'agent' ? 'items-end' : 'items-start'}`}>
-                        <div className={`p-3 rounded-2xl ${msg.isAi || msg.senderType === 'agent' ? 'bg-primary text-primary-foreground rounded-br-sm' : 'bg-background border rounded-bl-sm shadow-sm'}`}>
+  key={msg.id}
+className={`flex w-full items-end ${
+  msg.isAi || msg.senderType === 'agent'
+    ? 'justify-start'
+    : 'justify-end'
+}`}
+>
+   {!(msg.isAi || msg.senderType === 'agent') && (
+  <Avatar className="h-8 w-8">
+    <AvatarFallback>
+      {msg.sender.charAt(0)}
+    </AvatarFallback>
+  </Avatar>
+)}
+                      <div className={`flex flex-col gap-1 max-w-[70%] ${
+  msg.isAi || msg.senderType === 'agent'
+    ? 'items-start'
+    : 'items-end'
+}`}>
+                       <div
+  className={`p-3 rounded-2xl break-words ${
+    msg.isAi || msg.senderType === 'agent'
+  ? 'bg-background border rounded-bl-sm shadow-sm'
+  : 'bg-primary text-primary-foreground rounded-br-sm'
+  }`}
+>
                           <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
                         </div>
                         <span className="text-[10px] text-muted-foreground px-1">
@@ -178,6 +361,13 @@ export default function Conversations() {
                       </div>
                     </div>
                   ))}
+{isTyping && (
+  <div className="text-sm text-muted-foreground italic px-2">
+    Zinora AI is typing...
+  </div>
+)}
+
+                  <div ref={messagesEndRef} />
                 </div>
               </ScrollArea>
 

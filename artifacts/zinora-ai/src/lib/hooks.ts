@@ -8,6 +8,27 @@ function wrapOpts<T>(opts?: { query?: QueryOpts<T> }): QueryOpts<T> {
 }
 
 export function getGetMeQueryKey() { return ["auth", "me"] as const; }
+
+export function useCreateConversation(
+  options?: UseMutationOptions<
+    Conversation,
+    Error,
+    {
+      data: {
+        customerName: string;
+        customerEmail: string;
+        subject: string;
+        channel: string;
+      };
+    }
+  >
+) {
+  return useMutation({
+    mutationFn: ({ data }) => api.conversations.create(data),
+    ...options,
+  });
+}
+
 export function getListConversationsQueryKey(params?: object) { return ["conversations", "list", params] as const; }
 export function getListMessagesQueryKey(id: number) { return ["conversations", id, "messages"] as const; }
 export function getListArticlesQueryKey(params?: object) { return ["knowledge", "articles", params] as const; }
